@@ -1,19 +1,9 @@
 $(document).on('ready', function(){
-  var player1 = new()
-  var player2
+  var player1 = new Player()
+  var player2 = new Player()
 
   var winner = false;
-  function advance_duck(){
-    $('#player1_strip').find('.duck').removeClass('duck').next('td').addClass('duck');
-    var val = $('#player1_strip').find('.duck');
-    if(val.length === 0 && !winner) {
-      winner = true;
-      var object = {game: $('#game').val(),winner: $("#player1").val(),loser: $("#player2").val()};
-      $.post('/winner',object,function(response){
-        $('#winner').html('<h1> Duck won !!! Good Job ' + response.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
-      },"json");
-    }
-  };
+
 
 
   function advance_player(player){
@@ -35,14 +25,25 @@ $(document).on('ready', function(){
     },"json");
   }
 
-  function advance_poodle(){
-    $('#player2_strip').find('.poodle').removeClass('poodle').next('td').addClass('poodle');
-    var val = $('#player2_strip').find('.poodle');
-    if(val.length === 0 && !winner) {
-      winner = true;
+  // function advance_poodle(){
+  //   $('#player2_strip').find('.poodle').removeClass('poodle').next('td').addClass('poodle');
+  //   var val = $('#player2_strip').find('.poodle');
+  //   if(val.length === 0 && !winner) {
+  //     winner = true;
+  //   };
+  // };
 
-    };
-  };
+  // function advance_duck(){
+  //   $('#player1_strip').find('.duck').removeClass('duck').next('td').addClass('duck');
+  //   var val = $('#player1_strip').find('.duck');
+  //   if(val.length === 0 && !winner) {
+  //     winner = true;
+  //     var object = {game: $('#game').val(),winner: $("#player1").val(),loser: $("#player2").val()};
+  //     $.post('/winner',object,function(response){
+  //       $('#winner').html('<h1> Duck won !!! Good Job ' + response.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
+  //     },"json");
+  //   }
+  // };
 
   $("#reset").on('click', function(){
     $('#player2_strip').find('.poodle').removeClass('poodle');
@@ -88,6 +89,12 @@ $(document).on('ready', function(){
       advance_poodle();
     });
   };
+
+  $("form").on('submit', function(e){
+    e.preventDefault();
+    var data = {player1: }
+    $.post("/", )
+  })
 
   var random_button = function(){
     $('#random').on('click',function(){

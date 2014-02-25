@@ -20,7 +20,8 @@ post '/' do
   @b = User.create(user_name: session[:player2])
   @a = User.find_by(user_name: session[:player1]) if !@a.id
   @b = User.find_by(user_name: session[:player2]) if !@b.id
-
+  @data = {player1_name: @a.user_name, player1_id: @a.id, player2_name: @b.user_name, player2_id: @b.id, html_game: erb :game}.to_json
+  return @data if request.xhr?
   erb :game
 end
 
