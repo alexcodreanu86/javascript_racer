@@ -12,6 +12,9 @@ gem 'thin'
 
 gem 'activesupport'
 gem 'activerecord'
+gem 'pry'
+gem 'pry-nav'
+
 
 gem 'rake'
 

@@ -37,9 +37,15 @@ $(document).on('ready', function(){
     else {var vanquished = player1; var victor = player2};
 
     var object = {round: game.id ,winner: victor.id ,loser: vanquished.id}
+    var end_game = {winner: victor.id, loser: vanquished.id }
     $.post('/winner',object, function(response){
+
       $('#winner').html('<h1>Good Job ' + victor.user_name + ' you kicked the shit out of ' + vanquished.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
     },"json");
+    $.get('/display_players', end_game, function(data){
+      console.log(data);
+      $('#winner').append(data);
+    })
   }
 
 

@@ -38,9 +38,13 @@ get '/game' do
 end
 
 get '/display_players' do
-  @winner = User.find('1')
-  @loser = User.find(2)
-  erb :previous_games
+  puts"==================================================================="
+  puts params.inspect
+  binding.pry
+  @winner = User.find(params[:winner].to_i)
+  @loser = User.find(params[:loser].to_i)
+
+  erb :previous_games, layout: !request.xhr?
 end
 
 post '/winner' do
