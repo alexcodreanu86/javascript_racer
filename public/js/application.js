@@ -1,4 +1,6 @@
 $(document).on('ready', function(){
+  var player1 = new()
+  var player2
 
   var winner = false;
   function advance_duck(){
@@ -13,15 +15,32 @@ $(document).on('ready', function(){
     }
   };
 
+
+  function advance_player(player){
+    $(player).find('.active').removeClass('active').next('td').addClass('active');
+    var val = $(player).find('.active');
+    if(val.length === 0 && !winner) {
+      winner = true;
+      place_winner(player);
+    }
+  }
+
+  function place_winner(winning_player){
+    if (winning_player === "#player1_strip"){var vanquished = player2; var victor = player1};
+    else {var vanquished = player1; var victor = player2};
+
+    var object = {round: game.id ,winner: victor.id ,loser: vanquished.id}
+    $.post('/winner',object, function(response){
+      $('#winner').html('<h1>Good Job ' + victor.user_name + ' you kicked the shit out of ' + vanquished.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
+    },"json");
+  }
+
   function advance_poodle(){
     $('#player2_strip').find('.poodle').removeClass('poodle').next('td').addClass('poodle');
     var val = $('#player2_strip').find('.poodle');
     if(val.length === 0 && !winner) {
       winner = true;
-      var object = {game: $('#game').val(),winner: $("#player2").val(),loser: $("#player1").val()}
-      $.post('/winner',object, function(response){
-        $('#winner').html('<h1> Poodle won !!! Good Job ' + response.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
-      },"json");
+
     };
   };
 
@@ -80,6 +99,6 @@ $(document).on('ready', function(){
       for(var i = 0; i < poodle; i += 1){
         advance_poodle();
       };
-    }); 
+    });
   }
 })

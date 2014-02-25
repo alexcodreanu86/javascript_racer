@@ -38,7 +38,7 @@ get '/display_players' do
 end
 
 post '/winner' do
-  @game=Game.find(params[:game])
+  @game=Game.find(params[:round])
   @game.winner = params[:winner].to_i
   @game.loser = params[:loser].to_i
   @game.save
