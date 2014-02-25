@@ -1,6 +1,14 @@
 $(document).on('ready', function(){
-  // var player1 = new Player()
-  // var player2 = new Player()
+
+
+  var Player = function(name, id){
+    user_name: name
+    id: id
+  }
+
+  var player1 = new Player("Bob", 5)
+  var player2 = new Player("Fred", 6)
+  console.log(player1.user_name);
 
   var winner = false;
 
@@ -27,6 +35,7 @@ $(document).on('ready', function(){
       $('#winner').html('<h1>Good Job ' + victor.user_name + ' you kicked the shit out of ' + vanquished.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
     },"json");
   }
+
 
   // function advance_poodle(){
   //   $('#player2_strip').find('.poodle').removeClass('poodle').next('td').addClass('poodle');
@@ -98,7 +107,6 @@ $(document).on('ready', function(){
     var data = $(this).serialize()
     console.log(data)
     $.post("/", data,function(reply){
-      console.log(reply.html);
       $("body").html(reply.html);
     }, "json");
   })
