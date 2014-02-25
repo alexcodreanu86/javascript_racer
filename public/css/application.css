@@ -15,7 +15,8 @@ th {
 }
 
 #start{
-  margin-left: 50%;
+  float: right;
+  margin-right: 20%%;
 
 }
 .racer_table td.poodle {

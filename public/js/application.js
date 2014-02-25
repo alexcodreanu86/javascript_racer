@@ -33,12 +33,18 @@ $(document).on('ready', function(){
     $('#player1_strip td').first().addClass('duck');
   });
 
-  $('#start').on('click',function(){
+  var start_game = function(){
     $.get('/game',function(response){
       console.log(response);
       $('#game_space').html('<input type="hidden" id="game" value="'+ response +'">');
     });
+  }
 
+  $('#start').on('click',function(){
+    start_game();
+    duck_button();
+    poodle_button();
+    random_button();
     $(document).on('keyup',function(key){
       switch(key.which)
       {
@@ -50,26 +56,30 @@ $(document).on('ready', function(){
         break;
       };
     });
-
   });
 
-
-  $('#duck').on('click',function(){
-    advance_duck();
-  });
-
-  $('#poodle').on('click',function(){
-    advance_poodle();
-  });
-
-  $('#random').on('click',function(){
-    var duck = Math.floor(Math.random() * 5) + 1;
-    var poodle =  Math.floor(Math.random() * 5) + 1;
-    for(var i = 0; i < duck; i += 1){
+  var duck_button = function(){
+    $('#duck').on('click',function(){
       advance_duck();
-    };
-    for(var i = 0; i < poodle; i += 1){
+    });
+  }
+
+  var poodle_button= function(){
+    $('#poodle').on('click',function(){
       advance_poodle();
-    };
-  });
+    });
+  };
+
+  var random_button = function(){
+    $('#random').on('click',function(){
+      var duck = Math.floor(Math.random() * 5) + 1;
+      var poodle =  Math.floor(Math.random() * 5) + 1;
+      for(var i = 0; i < duck; i += 1){
+        advance_duck();
+      };
+      for(var i = 0; i < poodle; i += 1){
+        advance_poodle();
+      };
+    }); 
+  }
 })
