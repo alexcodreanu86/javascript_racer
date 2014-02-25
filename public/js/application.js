@@ -74,12 +74,11 @@ $(document).on('ready', function(){
   var start_game = function(){
     $.get('/game',function(response){
       game.id = response;
-      console.log(game);
     });
   }
 
   $(document).on('click', '#start', function(){
-    console.log("he");
+    document.getElementById('start').disabled = true
     start_game();
     duck_button();
     poodle_button();
@@ -88,10 +87,10 @@ $(document).on('ready', function(){
       switch(key.which)
       {
       case 65:
-        advance_player("#player1_strip");
+        if (!winner) {advance_player("#player1_strip")};
         break;
       case 76:
-        advance_player("#player2_strip");
+        if (!winner) {advance_player("#player2_strip")};
         break;
       };
     });
@@ -113,11 +112,25 @@ $(document).on('ready', function(){
     e.preventDefault();
     var data = $(this).serialize()
     $.post("/", data,function(reply){
-      $("body").html(reply.html);
       player1.id = reply.player1_id
-      player1.user_name = reply.player1.user_name
+      player1.user_name = reply.player1_name
       player2.id = reply.player2_id
-      player2.user_name = reply.player2.user_name
+      player2.user_name = reply.player2_name
+      $("body").html(reply.html);
+    }, "json");
+  })
+
+  $(document).on('click', '#restarting', function(e){
+    e.preventDefault();
+    winner = false;
+    var data = {player1: player1.user_name, player2: player2.user_name}
+    console.log(data);
+    $.post("/", data,function(reply){
+      player1.id = reply.player1_id
+      player1.user_name = reply.player1_name
+      player2.id = reply.player2_id
+      player2.user_name = reply.player2_name
+      $("body").html(reply.html);
     }, "json");
   })
 

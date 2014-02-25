@@ -4,6 +4,9 @@ get '/' do
   erb :index
 end
 
+get '/restart' do
+
+end
 
 get '/poodle' do
   erb :poodle, layout: !request.xhr?
