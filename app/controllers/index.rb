@@ -1,5 +1,6 @@
 get '/' do
   # Look in app/views/index.erb
+  session.clear
   erb :index
 end
 
@@ -13,11 +14,13 @@ get '/duck' do
 end
 
 post '/' do
-  @a =  User.create(user_name: params[:player1])
-  @b = User.create(user_name: params[:player2])
+  session[:player1] ||= params[:player1]
+  session[:player2] ||= params[:player2]
+  @a =  User.create(user_name: session[:player1])
+  @b = User.create(user_name: session[:player2])
+  @a = User.find_by(user_name: session[:player1]) if !@a.id
+  @b = User.find_by(user_name: session[:player2]) if !@b.id
 
-  @a = User.find_by(user_name: params[:player1]) if !@a.id
-  @b = User.find_by(user_name: params[:player2]) if !@b.id
   erb :game
 end
 
