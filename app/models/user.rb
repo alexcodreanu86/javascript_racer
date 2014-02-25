@@ -1,5 +1,15 @@
 class User < ActiveRecord::Base
-  has_many :games
   validates :user_name, uniqueness: true
-  # Remember to create a migration!
+
+  def games
+    Game.where('winner = ? or loser = ?', self.id, self.id)
+  end
+
+  def won_games
+    Game.where(winner: self.id)
+  end
+
+  def lost_games
+    Game.where(loser: self.id)
+  end
 end

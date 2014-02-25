@@ -1,0 +1,79 @@
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+
+  <button id="duck">Move Duck</button>
+  <button id="poodle">Move Poodle</button>
+  <button id="random">Advance random</button>
+  <button id="reset">Reset</button>
+  <button id="start">Start</button>
+  <h3>Duck is player: <%= @a.user_name %></h3>
+  <input type="hidden" id="player1" value="<%= @a.id %>">
+  <h3>Poodle is player: <%= @b.user_name %></h3>
+  <input type="hidden" id="player2" value="<%= @b.id %>">
+  <div id="game_space">
+
+  </div>
+  <table class="racer_table">
+    <div class="row">
+      <tr id="player1_strip">
+        <td class="duck"><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+      </tr>
+    </div>
+    <div class="row">
+      <tr id="player2_strip">
+        <td class="poodle"><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+        <td><div class="expand"></div></td>
+      </tr>
+    </div>
+  </table>
+  <div id="winner"></div>
+
+
