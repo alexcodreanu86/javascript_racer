@@ -31,6 +31,12 @@ get '/game' do
   return id
 end
 
+get '/display_players' do
+  @winner = User.find('1')
+  @loser = User.find(2)
+  erb :previous_games
+end
+
 post '/winner' do
   @game=Game.find(params[:game])
   @game.winner = params[:winner].to_i

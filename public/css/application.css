@@ -8,6 +8,24 @@ th {
   text-align: left;
 }
 
+#winner_games, #loser_games{
+  display:inline-block;
+  width: 250px;
+  margin: 10px;
+}
+
+#winner_games{
+  float:left;
+  position:relative;
+  left:100px;
+}
+
+#loser_games{
+  float:right;
+  position:relative;
+  right:100px;
+}
+
 .racer_table td {
   background-color: white;
   height: 30px;
