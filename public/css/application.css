@@ -37,12 +37,12 @@ th {
   margin-right: 20%%;
 
 }
-.racer_table td.poodle {
+#player2_strip td.active {
   background-image: url('poodle.jpeg');
   background-repeat: no-repeat;
 }
 
-.racer_table td.duck {
+#player1_strip td.active {
   background-image: url('duck.jpg');
   background-repeat: no-repeat;
 }

@@ -1,15 +1,21 @@
 $(document).on('ready', function(){
 
-
-  var Player = function(name, id){
-    user_name: name
-    id: id
+  var Game = function(id, winner, loser, time){
+    this.id = id
+    this.winner = winner
+    this.loser = loser
+    this.time = time
   }
 
-  var player1 = new Player("Bob", 5)
-  var player2 = new Player("Fred", 6)
-  console.log(player1.user_name);
+  var Player = function(name, id){
+    this.user_name =  name
+    this.id = id
+  }
 
+
+  var player1 = new Player();
+  var player2 = new Player();
+  var game = new Game();
   var winner = false;
 
 
@@ -57,22 +63,23 @@ $(document).on('ready', function(){
   //   }
   // };
 
-  $("#reset").on('click', function(){
-    $('#player2_strip').find('.poodle').removeClass('poodle');
-    $('#player1_strip').find('.duck').removeClass('duck');
+  $(document).on('click', "#reset", function(){
+    $('#player2_strip').find('.active').removeClass('active');
+    $('#player1_strip').find('.active').removeClass('active');
 
-    $('#player2_strip td').first().addClass('poodle');
-    $('#player1_strip td').first().addClass('duck');
+    $('#player2_strip td').first().addClass('active');
+    $('#player1_strip td').first().addClass('active');
   });
 
   var start_game = function(){
     $.get('/game',function(response){
-      console.log(response);
-      $('#game_space').html('<input type="hidden" id="game" value="'+ response +'">');
+      game.id = response;
+      console.log(game);
     });
   }
 
-  $('#start').on('click',function(){
+  $(document).on('click', '#start', function(){
+    console.log("he");
     start_game();
     duck_button();
     poodle_button();
@@ -81,38 +88,41 @@ $(document).on('ready', function(){
       switch(key.which)
       {
       case 65:
-        advance_duck();
+        advance_player("#player1_strip");
         break;
       case 76:
-        advance_poodle();
+        advance_player("#player2_strip");
         break;
       };
     });
   });
 
   var duck_button = function(){
-    $('#duck').on('click',function(){
-      advance_duck();
+    $(document).on('click', '#duck', function(){
+      advance_player("#player1_strip");
     });
   }
 
   var poodle_button= function(){
-    $('#poodle').on('click',function(){
-      advance_poodle();
+    $(document).on('click','#poodle', function(){
+      advance_player("#player2_strip");
     });
   };
 
   $("form").on('submit', function(e){
     e.preventDefault();
     var data = $(this).serialize()
-    console.log(data)
     $.post("/", data,function(reply){
       $("body").html(reply.html);
+      player1.id = reply.player1_id
+      player1.user_name = reply.player1.user_name
+      player2.id = reply.player2_id
+      player2.user_name = reply.player2.user_name
     }, "json");
   })
 
   var random_button = function(){
-    $('#random').on('click',function(){
+    $(document).on('click','#random',function(){
       var duck = Math.floor(Math.random() * 5) + 1;
       var poodle =  Math.floor(Math.random() * 5) + 1;
       for(var i = 0; i < duck; i += 1){
