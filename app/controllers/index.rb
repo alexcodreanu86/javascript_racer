@@ -30,7 +30,8 @@ end
 
 post '/winner' do
   @game=Game.find(params[:game])
-  @game.user_id = params[:winner].to_i
+  @game.winner = params[:winner].to_i
+  @game.loser = params[:loser].to_i
   @game.save
   @player = User.find(params[:winner])
   sleep(0.5)

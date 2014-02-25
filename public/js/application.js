@@ -6,7 +6,7 @@ $(document).on('ready', function(){
     var val = $('#player1_strip').find('.duck');
     if(val.length === 0 && !winner) {
       winner = true;
-      var object = {game: $('#game').val(),winner: $("#player1").val()};
+      var object = {game: $('#game').val(),winner: $("#player1").val(),loser: $("#player2").val()};
       $.post('/winner',object,function(response){
         $('#winner').html('<h1> Duck won !!! Good Job ' + response.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
       },"json");
@@ -18,7 +18,7 @@ $(document).on('ready', function(){
     var val = $('#player2_strip').find('.poodle');
     if(val.length === 0 && !winner) {
       winner = true;
-      var object = {game: $('#game').val(),winner: $("#player2").val()}
+      var object = {game: $('#game').val(),winner: $("#player2").val(),loser: $("#player1").val()}
       $.post('/winner',object, function(response){
         $('#winner').html('<h1> Poodle won !!! Good Job ' + response.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
       },"json");
