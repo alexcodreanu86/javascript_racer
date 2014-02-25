@@ -1,6 +1,6 @@
 $(document).on('ready', function(){
-  var player1 = new Player()
-  var player2 = new Player()
+  // var player1 = new Player()
+  // var player2 = new Player()
 
   var winner = false;
 
@@ -16,7 +16,10 @@ $(document).on('ready', function(){
   }
 
   function place_winner(winning_player){
-    if (winning_player === "#player1_strip"){var vanquished = player2; var victor = player1};
+    if (winning_player === "#player1_strip"){
+      var vanquished = player2
+      var victor = player1
+    }
     else {var vanquished = player1; var victor = player2};
 
     var object = {round: game.id ,winner: victor.id ,loser: vanquished.id}
@@ -92,8 +95,12 @@ $(document).on('ready', function(){
 
   $("form").on('submit', function(e){
     e.preventDefault();
-    var data = {player1: }
-    $.post("/", )
+    var data = $(this).serialize()
+    console.log(data)
+    $.post("/", data,function(reply){
+      console.log(reply.html);
+      $("body").html(reply.html);
+    }, "json");
   })
 
   var random_button = function(){
