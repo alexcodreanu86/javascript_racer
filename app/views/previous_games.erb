@@ -1,12 +1,12 @@
 <div id="winner_games">
   <h2><%= @winner.user_name %> won games against: </h2>
   <% @winner.won_games.each do |game|%>
-    <h4> - <%= User.find(game.loser).user_name%></h4> 
+    <h4> - <%= User.find(game.loser).user_name%></h4>
   <% end %>
 
   <h2><%= @winner.user_name %> lost games to: </h2>
   <% @winner.lost_games.each do |game|%>
-    <h4> - <%= User.find(game.winner).user_name%></h4> 
+    <h4> - <%= User.find(game.winner).user_name%></h4>
   <% end %>
 
 </div>
@@ -14,11 +14,11 @@
 <div id="loser_games">
   <h2><%= @loser.user_name %> won games against: </h2>
   <% @loser.won_games.each do |game|%>
-    <h4> - <%= User.find(game.loser).user_name%></h4> 
+    <h4> - <%= User.find(game.loser).user_name%></h4>
   <% end %>
 
   <h2><%= @loser.user_name %> lost games to: </h2>
   <% @loser.lost_games.each do |game|%>
-    <h4> - <%= User.find(game.winner).user_name%></h4> 
+    <h4> - <%= User.find(game.winner).user_name%></h4>
   <% end %>
 </div>

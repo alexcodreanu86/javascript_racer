@@ -1,3 +1,8 @@
+body {
+  background-image: url('http://www.state.nj.us/dep/wms/bfbm/GreatGorgeLake.jpg');
+  background-size: cover;
+}
+
 .container {
   margin: 20px auto;
   width: 600px;
@@ -12,9 +17,11 @@ th {
   display:inline-block;
   width: 250px;
   margin: 10px;
+  color: red;
 }
 
 #winner_games{
+
   float:left;
   position:relative;
   left:100px;
@@ -27,14 +34,14 @@ th {
 }
 
 .racer_table td {
-  background-color: white;
+  background-color: none;
   height: 30px;
   width: 100px;
 }
 
 #start{
   float: right;
-  margin-right: 20%%;
+  margin-right: 20%;
 
 }
 #player2_strip td.active {
@@ -45,6 +52,16 @@ th {
 #player1_strip td.active {
   background-image: url('duck.jpg');
   background-repeat: no-repeat;
+}
+
+.fire {
+  background-image: url('http://media.heraldsun.com.au/multimedia/2014/jan/maps/images/fire2.gif');
+  background-size: cover;
+}
+
+.smoke {
+  background-image: url("http://i763.photobucket.com/albums/xx275/michael_1997_2009/smoke.gif");
+  background-size: cover;
 }
 
 #winner {
@@ -66,12 +83,10 @@ table{
 
 td {
   margin: 100px;
-  border-top: 2px solid blue;
-  border-bottom: 2px solid blue;
+
 }
 tr {
   border-spacing:20px;
-  border: 2px dashed blue;
 }
 
 button {

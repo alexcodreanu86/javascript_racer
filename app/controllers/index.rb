@@ -38,9 +38,6 @@ get '/game' do
 end
 
 get '/display_players' do
-  puts"==================================================================="
-  puts params.inspect
-  binding.pry
   @winner = User.find(params[:winner].to_i)
   @loser = User.find(params[:loser].to_i)
 

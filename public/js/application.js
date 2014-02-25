@@ -18,10 +18,29 @@ $(document).on('ready', function(){
   var game = new Game();
   var winner = false;
 
+  function counter(){
+    for(var i = 5; i >= 0; i--){
+      setTimeout(timerFunction(i), (6-i) * 1000);
+    }
+  }
 
+  function timerFunction(i){
+    return function(){
+      console.log(i);
+      if (i === 0) {
+        $('#winner').html('<h1 style="font-size: 100px; color: green; text-align:center;">Start</h1>');
+        game_on();
+      }
+      else {
+        $('#winner').html('<h1 style="font-size: 100px; color: yellow; text-align:center;">' + i + '</h1>');
+      }
+    }
+
+  }
 
   function advance_player(player){
-    $(player).find('.active').removeClass('active').next('td').addClass('active');
+    $(player).find('.fire').removeClass('fire').addClass('smoke');
+    $(player).find('.active').removeClass('active').addClass('fire').next('td').addClass('active');
     var val = $(player).find('.active');
     if(val.length === 0 && !winner) {
       winner = true;
@@ -40,7 +59,7 @@ $(document).on('ready', function(){
     var end_game = {winner: victor.id, loser: vanquished.id }
     $.post('/winner',object, function(response){
 
-      $('#winner').html('<h1>Good Job ' + victor.user_name + ' you kicked the shit out of ' + vanquished.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
+      $('#winner').html('<h1 style="font-size: 40px; color: white;">Good Job ' + victor.user_name + ' you kicked the shit out of ' + vanquished.user_name + '!! It took you ' + response.time + ' seconds to finish this race!</h1>');
     },"json");
     $.get('/display_players', end_game, function(data){
       console.log(data);
@@ -83,7 +102,7 @@ $(document).on('ready', function(){
     });
   }
 
-  $(document).on('click', '#start', function(){
+  var game_on = function(){
     document.getElementById('start').disabled = true
     start_game();
     duck_button();
@@ -100,6 +119,10 @@ $(document).on('ready', function(){
         break;
       };
     });
+  }
+
+  $(document).on('click', '#start', function(){
+    counter();
   });
 
   var duck_button = function(){
